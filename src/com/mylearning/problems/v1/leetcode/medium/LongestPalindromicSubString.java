@@ -3,48 +3,38 @@ package com.mylearning.problems.v1.leetcode.medium;
 public class LongestPalindromicSubString {
   
   public static void main(String[] args) {
-    String s = "aacabdkacaa";
-    int[][] dp = new int[s.length()][s.length()];
-    int[] sub = new int[s.length()];
-    System.out.println(lps(s, 0, s.length() - 1, dp, sub));
-    String r = "";
-    for (int i = sub[0]; i <= sub[1]; i++) {
-        r += s.charAt(i);
-    }
-    System.out.println(r);
-    for (int i = 0; i < dp.length; i++) {
-      for (int j = 0; j < dp[i].length; j++) {
-        System.out.print(dp[i][j] + " ");
-      }
-      System.out.println();
-    }
+    bruteforce(); // O(n^3)
   }
   
-  private static String palindromeSubString(String s, int i, int j, String subString) {
-    return null;
-  }
-  
-  private static int lps(String s, int i, int j, int[][] dp, int[] subString) {
-    if (i > j) {
-      return 0;
-    }
-    if (i == j) {
-      return 1;
-    }
-    if (dp[i][j] == 0) {
-      int case1 = 0;
-      if (s.charAt(i) == s.charAt(j)) {
-        int remaining = j - i - 1;
-        if (remaining == lps(s, i + 1, j - 1, dp, subString)) {
-          subString[0] = i;
-          subString[1] = j;
-          case1 = remaining + 2;
+  private static void bruteforce() {
+    String s = "babad";
+    //two possibilities for regular palindrome
+    //aabbaa -> even
+    //aabebaa -> odd
+    int start = 0, end = 1;
+    for (int i = 0; i < s.length(); i++) {
+      for (int j = i; j < s.length(); j++) {
+        System.out.println(s.charAt(i) + " - " + s.charAt(j));
+        int eq = 1;
+        for (int k = 0; k < j - i + 1; k++) {
+          System.out.println("--- " + s.charAt(i+k) + " - " + s.charAt(j - k));
+          if (s.charAt(i+k) !=  s.charAt(j-k) ) {
+            eq = 0;
+          }
         }
+        if (eq != 0 && (j - i + 1) > end) {
+          start = i;
+          end = j - i + 1;
+        }
+        System.out.println("End of k");
       }
-      int case2 = lps(s, i + 1, j, dp, subString);
-      int case3 = lps(s, i, j - 1, dp, subString);
-      dp[i][j] = Math.max(case1, Math.max(case2, case3));
+      System.out.println("End of j");
     }
-    return dp[i][j];
+    int max = start + end - 1;
+    StringBuilder str = new StringBuilder();
+    for (int i = start; i <= max; i++) {
+      str.append(s.charAt(i));
+    }
+    System.out.println(str.toString());
   }
 }
