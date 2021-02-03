@@ -6,23 +6,24 @@ public class IslandsNumberOf {
   
   public static void main(String[] args) {
     char[][] arr = {
-        {'1','1','1','1','0'},
-        {'1','1','0','1','0'},
         {'1','1','0','0','0'},
-        {'0','0','0','0','0'}
+        {'1','1','0','0','0'},
+        {'0','0','1','0','0'},
+        {'0','0','0','1','1'}
     };
     int numOfIslands = 0;
     boolean[][] visited = new boolean[arr.length][arr[0].length];
     //two solutions, 1 with visited array, and another without
     for (int i = 0; i < arr.length; i++) {
       for (int j = 0; j < arr[i].length; j++) {
-//        if (arr[i][j] == '1') {
-//          numOfIslands += dfs(arr, i, j, visited);
-//        }
-        if (arr[i][j] == '1' && visited[i][j] == false) {
-          dfs_visited(arr, i, j, visited);
-          numOfIslands++;
+        if (arr[i][j] == '1') {
+          numOfIslands += dfs(arr, i, j);
+          int n = 0;
         }
+//        if (arr[i][j] == '1' && visited[i][j] == false) {
+//          dfs_visited(arr, i, j, visited);
+//          numOfIslands++;
+//        }
       }
     }
     System.out.println(numOfIslands);
