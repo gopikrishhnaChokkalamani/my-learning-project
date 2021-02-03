@@ -5,7 +5,12 @@ public class ClimbingStairs {
   public static void main(String[] args) {
     int n = 3;
     int[] dp = new int[n + 1];
+    
+    //regaular recursive will timeout once the input reaches 40+ stairs
+    //so dynamic programming is the only option to solve
+    //memoization solution
     System.out.println(ways(n, dp));
+    //tabulation solution
     int[] tab = new int[n + 1];
     tab[0] = 1;
     tab[1] = 1;
