@@ -25,6 +25,32 @@ public class ValidateBinarySearchTree {
     TreeNode node = new TreeNode(5, new TreeNode(1), new TreeNode(4, new TreeNode(3), new TreeNode(6)));
     boolean isBST = isBST(node, null, null);
     System.out.println(isBST);
+    preOrder(node);
+    System.out.println();
+    postOrder(node);
+    System.out.println();
+    inOrder(node);
+  }
+  
+  private static void inOrder(TreeNode node) {
+    if (node == null) return;
+    inOrder(node.left);
+    System.out.print(node.val + " ");
+    inOrder(node.right);
+  }
+  
+  private static void preOrder(TreeNode node) {
+    if (node == null) return;
+    System.out.print(node.val + " ");
+    preOrder(node.left);
+    preOrder(node.right);
+  }
+  
+  private static void postOrder(TreeNode node) {
+    if (node == null) return;
+    postOrder(node.left);
+    postOrder(node.right);
+    System.out.print(node.val + " ");
   }
   
   public static boolean isBST(TreeNode node, Integer min, Integer max) {
