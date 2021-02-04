@@ -2,6 +2,7 @@ package com.mylearning.problems.v1.leetcode.medium;
 
 public class IslandsNumberOfClosed {
   
+  //here 0 is land 1 is water
   public static void main(String[] args) {
     int[][] arr = {
         {1, 1, 1, 1, 1, 1, 1, 0},

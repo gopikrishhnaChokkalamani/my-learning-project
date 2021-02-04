@@ -2,6 +2,7 @@ package com.mylearning.problems.v1.leetcode.medium;
 
 public class IslandMaxArea {
   
+  // 1 land 0 water
   public static void main(String[] args) {
     int[][] arr = {
         {0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
