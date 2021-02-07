@@ -39,6 +39,7 @@ public class ProductofArrayExceptSelf {
       p[i] = tmp;
       tmp *= arr[i];
     }
+    System.out.println("---" + Arrays.toString(p));
     tmp = 1;
     // 1 1 2 6
     for (int i = arr.length - 1; i >= 0; i--) {
