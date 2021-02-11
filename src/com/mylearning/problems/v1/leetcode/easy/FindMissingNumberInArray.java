@@ -1,4 +1,4 @@
-package com.mylearning.problems.v1.internet;
+package com.mylearning.problems.v1.leetcode.easy;
 
 public class FindMissingNumberInArray {
 

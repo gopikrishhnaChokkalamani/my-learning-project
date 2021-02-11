@@ -1,6 +1,9 @@
 package com.mylearning.problems.v1.leetcode.easy;
 
-public class MergeTwoSortedLinkedLists {
+import java.util.PriorityQueue;
+import java.util.Queue;
+
+public class MergeTwoSortedLists {
   
   public static class ListNode {
     int val;
@@ -20,7 +23,30 @@ public class MergeTwoSortedLinkedLists {
   }
   
   public static void main(String[] args) {
-    ListNode l = mergeTwoLists(null, new ListNode(0));
+    ListNode l = mergeTwoLists(new ListNode(1, new ListNode(2, new ListNode(4))), new ListNode(1, new ListNode(3, new ListNode(4))));
+    ListNode l1 = mergeTwoListsAnotherMethod(new ListNode(1, new ListNode(2, new ListNode(4))), new ListNode(1, new ListNode(3, new ListNode(4))));
+    int i = 0;
+  }
+  
+  private static ListNode mergeTwoListsAnotherMethod(ListNode listNode, ListNode listNode2) {
+    Queue<Integer> queue = new PriorityQueue<>();
+    ListNode l1 = listNode;
+    while (l1 != null) {
+      queue.add(l1.val);
+      l1 = l1.next;
+    }
+    ListNode l2 = listNode2;
+    while (l2 != null) {
+      queue.add(l2.val);
+      l2 = l2.next;
+    }
+    ListNode l = new ListNode(0);
+    ListNode n = l;
+    while (!queue.isEmpty()) {
+      n.next = new ListNode(queue.remove());
+      n = n.next;
+    }
+    return l.next;
   }
   
   public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {

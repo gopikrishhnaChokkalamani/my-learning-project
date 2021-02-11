@@ -36,21 +36,31 @@ public class MergeTwoBinaryTrees {
   }
   
   private static TreeNode preOrder(TreeNode t1, TreeNode t2) {
-    if (t1 == null && t2 == null) {
-      return null;
-    } else {
-      if (t1 == null) {
-        return new TreeNode(t2.val);
-      } else if (t2 == null) {
-         t1.val += (t2 == null) ? 0 : t2.val;
-         return t1;
-      } else {
-        t1.val += (t2 == null) ? 0 : t2.val;
-      }
-    }
-    t1 = preOrder((t1 == null) ? null : t1.left, (t2 == null) ? null : t2.left);
-    t1 = preOrder((t1 == null) ? null : t1.right, (t2 == null) ? null : t2.right);
+//    if (t1 == null && t2 == null) {
+//      return null;
+//    } else {
+//      if (t1 == null) {
+//        return new TreeNode(t2.val);
+//      } else if (t2 == null) {
+//         t1.val += (t2 == null) ? 0 : t2.val;
+//         return t1;
+//      } else {
+//        t1.val += (t2 == null) ? 0 : t2.val;
+//      }
+//    }
+//    t1 = preOrder((t1 == null) ? null : t1.left, (t2 == null) ? null : t2.left);
+//    t1 = preOrder((t1 == null) ? null : t1.right, (t2 == null) ? null : t2.right);
+          if (t1 == null) {
+    return t2;
+  }
+    if (t2 == null) {
     return t1;
+  }
+  t1.val += t2.val;
+  t1.left = preOrder(t1.left, t2.left);
+  t1.right = preOrder(t1.right, t2.right);
+    return t1;
+  //  return t1;
   }
   
 //  easy solution

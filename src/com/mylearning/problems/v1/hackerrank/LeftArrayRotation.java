@@ -2,7 +2,7 @@ package com.mylearning.problems.v1.hackerrank;
 
 import java.util.Arrays;
 
-public class ArrayRotation {
+public class LeftArrayRotation {
   
   public static void main(String[] args) {
     int d = 4;

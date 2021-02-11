@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class MergeTwoSortedArrays {
   
   public static void main(String[] args) {
-    int[] a = {1, 2, 3, 0, 0, 0};
+    int[] a = {1, 2, 3};
     int[] b = {2, 5, 6};
     int m = 3, n = 3;
   

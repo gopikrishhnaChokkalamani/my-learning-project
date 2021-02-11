@@ -20,8 +20,7 @@ public class RemoveDuplicatesSortedArray {
       j++;
     }
     
-
-    System.out.println(j);
+    System.out.println("New Length " + j);
     System.out.println(Arrays.toString(a));
   }
 }
