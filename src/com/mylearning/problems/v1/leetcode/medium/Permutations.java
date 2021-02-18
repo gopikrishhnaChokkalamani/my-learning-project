@@ -3,7 +3,7 @@ package com.mylearning.problems.v1.leetcode.medium;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArrayPermutationsOrder {
+public class Permutations {
   
 //  Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order
 //  Example 1:
