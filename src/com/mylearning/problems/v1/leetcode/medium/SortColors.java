@@ -33,6 +33,8 @@ public class SortColors {
     int ii = 0;
   }
   
+  
+  //insertion
   public static void sortColors(int[] nums) {
     for (int i = 1; i < nums.length; i++) {
       int j = i;
