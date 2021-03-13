@@ -13,7 +13,19 @@ public class ReverseArray {
       arr[i] = arr[n - i - 1];
       arr[n - i - 1] = tmp;
     }
-  
     System.out.println(Arrays.toString(arr));
+    int [] a = {23, 5, 7, 9, 10, 1, 25, 11};
+    easyReverse(a);
+    System.out.println(Arrays.toString(a));
+  }
+
+  private static void easyReverse(int[] arr) {
+    int i = 0, j = arr.length - 1;
+    while (i < j) {
+      int tmp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = tmp;
+      i++; j--;
+    }
   }
 }

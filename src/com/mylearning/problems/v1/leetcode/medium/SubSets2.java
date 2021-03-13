@@ -1,12 +1,14 @@
 package com.mylearning.problems.v1.leetcode.medium;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SubSets2 {
 
   public static void main(String[] args) {
     int[] arr = {1, 2, 2};
+    Arrays.sort(arr);
     subSets(arr, new ArrayList<>(), 0);
     for (List<Integer> sub : list) {
       for (Integer i : sub) {
