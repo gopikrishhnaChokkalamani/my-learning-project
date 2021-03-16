@@ -15,8 +15,6 @@ public class MeetingRoom2 {
 
     Arrays.sort(arr, Comparator.comparingInt(ints -> ints[0]));
     PriorityQueue<Integer> queue = new PriorityQueue<>();
-    int prev = arr[0][1];
-    int rooms = 1;
     for (int i = 0; i < arr.length; i++) {
       if (!queue.isEmpty() && arr[i][0] >= queue.peek()) {
         queue.poll();

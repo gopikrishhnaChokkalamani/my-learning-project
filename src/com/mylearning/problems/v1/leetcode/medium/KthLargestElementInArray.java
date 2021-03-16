@@ -1,5 +1,6 @@
 package com.mylearning.problems.v1.leetcode.medium;
 
+import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -18,5 +19,15 @@ public class KthLargestElementInArray {
     }
     int i = 0;
     System.out.println(queue.remove());
+    another(arr, k);
+  }
+
+  private static void another(int[] arr, int k) {
+    if (arr == null || arr.length == 0) return;
+    Arrays.sort(arr);
+    for (int i = arr.length - 1; i >= 0; i--) {
+      if (arr.length - i == k) {
+        System.out.println(arr[i]); break; }
+    }
   }
 }

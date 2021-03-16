@@ -8,6 +8,7 @@ public class IsPalindrome {
     //s.replace(" ", "");
     System.out.println(isPalindrome(s, 0, s.length() - 1));
     System.out.println(isPalindrome(s));
+    System.out.println(another(s));
   }
   
   private static boolean isPalindrome(String s) {
@@ -21,6 +22,10 @@ public class IsPalindrome {
   private static boolean isPalindrome(String s, int i, int j) {
     if (i > j) return true;
     if (s.charAt(i) == s.charAt(j)) return isPalindrome(s, i + 1, j - 1);
+    return false;
+  }
+
+  private static boolean another(String s) {
     return false;
   }
 }
