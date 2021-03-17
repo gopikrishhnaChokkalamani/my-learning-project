@@ -40,7 +40,7 @@ public class OddEvenLinkedList {
     ListNode odd = root;
     ListNode even = root.next;
     ListNode evenTmp = even;
-    while (even != null) {
+    while (even != null && even.next != null) {
       odd.next = even.next;
       odd = odd.next;
       even.next = odd.next;

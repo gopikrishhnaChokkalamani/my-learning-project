@@ -1,6 +1,7 @@
 package com.mylearning.problems.v1.leetcode.medium;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GroupAnagrams {
 
@@ -66,6 +67,7 @@ public class GroupAnagrams {
       String key = new String(chars);
       map.computeIfAbsent(key, s1 -> new ArrayList<>()).add(s);
     }
+    //map.values().stream().collect(Collectors.toList())
     for (List<String> l : new ArrayList<>(map.values())) {
       System.out.println(l);
     }

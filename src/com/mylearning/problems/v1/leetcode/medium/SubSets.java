@@ -6,7 +6,7 @@ import java.util.List;
 public class SubSets {
 
   public static void main(String[] args) {
-    int[] arr = {1, 2, 2};
+    int[] arr = {1, 2, 3};
     getSubSets(arr, 0, arr.length - 1, new ArrayList<>());
     System.out.println();
     for (List<Integer> l : list) {
