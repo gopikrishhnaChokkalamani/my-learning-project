@@ -8,7 +8,7 @@ public class IsPalindrome {
     //s.replace(" ", "");
     System.out.println(isPalindrome(s, 0, s.length() - 1));
     System.out.println(isPalindrome(s));
-    System.out.println(another(s));
+    //System.out.println(another(s));
   }
   
   private static boolean isPalindrome(String s) {

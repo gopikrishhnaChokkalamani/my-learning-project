@@ -22,6 +22,7 @@ public class LongestIncreasingSubSequence {
       }
       max = Math.max(dp[i], max);
     }
+    System.out.println(max);
     int i = 0;
   }
   

@@ -48,8 +48,31 @@ public class MergeIntervalsArray {
     
     //another method
     anotherMethod();
+    another(arr);
   }
-  
+
+  private static void another(int[][] arr) {
+    if (arr == null || arr.length == 0) return;
+
+    Arrays.sort(arr, Comparator.comparing(ints -> ints[0]));
+    int[] prev = arr[0];
+    List<int[]> list = new ArrayList<>();
+
+    for (int i = 1; i < arr.length; i++) {
+      int prevLast = prev[1];
+      int prevFirst = prev[0];
+      int[] curr = arr[i];
+      int currFirst = curr[0];
+      int currLast = curr[1];
+      if (prevLast >= currFirst) {
+        currFirst = Math.min(currFirst, prevFirst);
+        currLast = Math.max(prevLast, currLast);
+      }
+      list.add(new int[]{currFirst, currLast});
+    }
+    System.out.println();
+  }
+
   private static void anotherMethod() {
     int[][] arr = {
         {15, 18},

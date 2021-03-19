@@ -3,17 +3,49 @@ package com.mylearning.problems.v1.leetcode.medium;
 public class LongestPalindromicSubString {
   
   public static void main(String[] args) {
-    bruteforce(); // O(n^3)
-    System.out.println("###################### - just count");
-    System.out.println(justCount());
-    System.out.println(findLongestPalindrome());
+    String s = "babad";
+    System.out.println("########## - just count - ############");
+    System.out.println(justCount(s));
+    System.out.println("########## - brute force - ############");
+    bruteforce(s); // O(n^3)
+    System.out.println("########## - expand Around Corner - ############");
+    System.out.println(expandAroundCorner(s));
+    System.out.println("########## - recursive- ############");
+    String s1 = "babad";
+    recursive(s1, 0, s1.length() - 1);
+    System.out.println(result);
   }
 
-  private static int justCount() {
-    String s = "ac";
+  static String result = null;
+  static int max = 0;
+
+  private static boolean recursive(String s, int i, int j) {
+    if (i == j || j == i + 1 || s.charAt(i) == s.charAt(j)) { // this condition is when String s = "a" or s = "aa";
+      updateRecursionResult(s, i, j);
+      return true;
+    }
+
+    if (s.charAt(i) == s.charAt(j) && recursive(s, i + 1, j - 1)) {
+      updateRecursionResult(s, i, j);
+      return true;
+    }
+    recursive(s, i + 1, j);
+    recursive(s, i , j - 1);
+    return false;
+  }
+
+  private static void updateRecursionResult(String s, int i, int j) {
+    if (j - i + 1 > max) {  //+1 is for 0 index position handling
+      max = j - i + 1;
+      result = s.substring(i, j + 1);
+    }
+  }
+
+  private static int justCount(String s) {
+    //String s = "ac";
     String str = "";
     int count = findCount(s, 0, s.length() - 1);
-    System.out.println(str);
+    //System.out.println(str);
     return count;
   }
 
@@ -24,12 +56,6 @@ public class LongestPalindromicSubString {
     if (s.charAt(i) == s.charAt(j)) {
       int remaining = j - i - 1;
       if (remaining == findCount(s, i + 1, j - 1)) {
-        System.out.println(i + " --- "+ j);
-        String subStr = "";
-        for (int k = i; k <= j; k++) {
-          subStr += s.charAt(k);
-        }
-        System.out.println(subStr);
         case1 = remaining + 2;
       }
     }
@@ -38,18 +64,18 @@ public class LongestPalindromicSubString {
     return Math.max(case1, Math.max(case2, case3));
   }
 
-  private static void bruteforce() {
-    String s = "babad";
+  private static void bruteforce(String s) {
+    //String s = "babad";
     //two possibilities for regular palindrome
     //aabbaa -> even
     //aabebaa -> odd
     int start = 0, end = 1;
     for (int i = 0; i < s.length(); i++) {
       for (int j = i; j < s.length(); j++) {
-        System.out.println(s.charAt(i) + " - " + s.charAt(j));
+        //System.out.println(s.charAt(i) + " - " + s.charAt(j));
         int eq = 1;
         for (int k = 0; k < j - i + 1; k++) {
-          System.out.println("--- " + s.charAt(i+k) + " - " + s.charAt(j - k));
+          //System.out.println("--- " + s.charAt(i+k) + " - " + s.charAt(j - k));
           if (s.charAt(i+k) !=  s.charAt(j-k) ) {
             eq = 0;
           }
@@ -58,9 +84,9 @@ public class LongestPalindromicSubString {
           start = i;
           end = j - i + 1;
         }
-        System.out.println("End of k");
+        //System.out.println("End of k");
       }
-      System.out.println("End of j");
+      //System.out.println("End of j");
     }
     int max = start + end - 1;
     StringBuilder str = new StringBuilder();
@@ -73,8 +99,8 @@ public class LongestPalindromicSubString {
   static int resultStart;
   static int noOfElements;
 
-  private static String findLongestPalindrome() {
-    String s = "babad";
+  private static String expandAroundCorner(String s) {
+    //String s = "babad";
     if (s == null || s.length() <= 1) return s;
 
     for (int i = 0; i < s.length(); i++) {

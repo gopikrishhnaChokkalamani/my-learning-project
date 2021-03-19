@@ -17,7 +17,7 @@ public class DiameterOfBinaryTree {
   
   static int max = 0;
   public static void main(String[] args) {  //
-    diameterOfBinaryTree(new TreeNode(1, new TreeNode(2, new TreeNode(4), new TreeNode(5)), new TreeNode(3)));
+    int d = diameterOfBinaryTree(new TreeNode(1, new TreeNode(2, new TreeNode(4), new TreeNode(5)), new TreeNode(3)));
     System.out.println(max == 0 ? max : max - 1);
   }
   
