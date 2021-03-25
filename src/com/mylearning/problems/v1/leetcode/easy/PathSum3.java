@@ -30,3 +30,34 @@ public class PathSum3 {
     list.remove(list.size() - 1);
   }
 }
+
+/* another solution - O(n)
+class Solution {
+    int count = 0;
+    int k;
+    HashMap<Integer,Integer> h = new HashMap<>();
+
+
+    public int pathSum(TreeNode root, int sum) {
+        k = sum;
+        preorder(root,0);
+        return count;
+    }
+
+    public void preorder(TreeNode node, int cur){
+        if(node == null){
+            return;
+        }
+        cur += node.val;
+        if(cur == k){
+            count++;
+        }
+        count += h.getOrDefault(cur-k,0);
+        h.put(cur,h.getOrDefault(cur,0)+1);
+        preorder(node.left,cur);
+        preorder(node.right,cur);
+        h.put(cur,h.getOrDefault(cur,0)-1);
+        //cur -= node.val;
+    }
+}
+ */
