@@ -1,4 +1,4 @@
-package com.mylearning.datastructures.v1.graph.representation.adjacencylist;
+package com.mylearning.datastructures.v1.graph.representation;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
