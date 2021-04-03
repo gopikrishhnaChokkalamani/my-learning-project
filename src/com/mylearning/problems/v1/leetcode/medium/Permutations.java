@@ -17,7 +17,7 @@ public class Permutations {
 //  Output: [[1]]
   
   public static void main(String[] args) {
-    int[] arr = {1, 2};
+    int[] arr = {1, 2, 3};
     List<List<Integer>> list = new ArrayList<>();
     generatePermutations(arr, list, 0);
     for (List<Integer> s : list) {
