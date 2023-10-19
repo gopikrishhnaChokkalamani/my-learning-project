@@ -3,3 +3,6 @@
 
 
 RDML, an acronym denoting "Remote Dashboard Module List," is envisioned as an extension built upon the preexisting Dashboard Module List (DML). RDML is designed to function as an experience service, with the primary responsibility of executing multiple remote API calls in parallel and consolidating the resulting remote data and eligibility information into a single, aggregated response that is then transmitted back to the user interface. The key objective of this architectural augmentation is to curtail the volume of network calls initiated by the user interface, thereby enabling it to issue a solitary RDML request to acquire all the requisite remote data for display on the dashboard.
+
+
+DML, an acronym signifying "Dashboard Module List," functions as an aggregating service with the primary objective of facilitating a modular response structure, simplifying the task of mapping and rendering tiles within the user interface. DML introduces a configuration-based mechanism that affords a high degree of control over the services included in the response object. This configuration-driven approach empowers the creation of distinct configurations for various dashboards and allows for the repositioning of modules across dashboards through configuration modifications, thereby circumventing the necessity for alterations in Java code.
