@@ -1,63 +1,82 @@
 import React, { useEffect, useState } from "react";
 
-const PORTS = [8080, 8081]; // 👈 change these as needed
-
 const apps = [
-  { name: "Album Service", port: 8080, basePath: "/app-name-1" },
-  { name: "User Service", port: 8081, basePath: "/app-name-2" },
-  { name: "Payment Service", port: 8082, basePath: "/app-name-3" },
+  { name: "Profile Service", url: "http://localhost:8081/app-name-1/actuator/health", env: "QA", region: "us-east-1" },
+  { name: "Order Service", url: "http://localhost:8082/app-name-2/actuator/health", env: "QA", region: "us-east-1" },
+  { name: "Payment Service", url: "http://localhost:8083/app-name-3/actuator/health", env: "QA", region: "us-west-2" },
+  { name: "User Service", url: "http://localhost:8084/app-name-4/actuator/health", env: "Dev", region: "us-east-1" },
 ];
 
-function App() {
+function groupByEnvRegion(appStatuses) {
+  const grouped = {};
+  appStatuses.forEach(({ name, status, env, region }) => {
+    if (!grouped[env]) grouped[env] = {};
+    if (!grouped[env][region]) grouped[env][region] = [];
+    grouped[env][region].push({ name, status });
+  });
+  return grouped;
+}
+
+function AppStatusDashboard() {
   const [statuses, setStatuses] = useState([]);
 
   useEffect(() => {
     const checkAll = async () => {
       const results = await Promise.all(
-        apps.map(async ({ name, port, basePath }) => {
+        apps.map(async ({ name, url, env, region }) => {
           try {
-            const url = `http://localhost:${port}/actuator/health`;
-            const res = await fetch(url);
-            const data = await res.json();
-            return { name, port, status: data.status || 'UNKNOWN' };
-          } catch (e) {
-            return { name, port, status: 'DOWN' };
+            const proxyUrl = `http://localhost:8085/proxy/check?url=${encodeURIComponent(url)}`;
+            const res = await fetch(proxyUrl);
+            if (!res.ok) throw new Error("Network error");
+            const text = await res.text();
+            const status = text.includes("UP") ? "UP" : "DOWN";
+            return { name, status, env, region };
+          } catch {
+            return { name, status: "DOWN", env, region };
           }
         })
       );
       setStatuses(results);
     };
 
-
     checkAll();
-    const interval = setInterval(checkAll, 5000); // Refresh every 5s
+    const interval = setInterval(checkAll, 5000);
     return () => clearInterval(interval);
   }, []);
 
+  const grouped = groupByEnvRegion(statuses);
+
   return (
-   <div style={{ padding: '2rem' }}>
-        <h2>🖥️ Spring Boot App Status Console</h2>
-  <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-               {statuses.map(({ name, port, status }) => (
-                 <div
-                   key={port}
-                   style={{
-                     padding: "1rem",
-                     borderRadius: "8px",
-                     border: "1px solid #ccc",
-                     backgroundColor: status === "UP" ? "#d4f8d4" : "#f8d4d4",
-                     width: "200px",
-                   }}
-                 >
-                   <h3>{name}</h3>
-                   <p>Port: {port}</p>
-                   <p>Status: {status}</p>
-                 </div>
-               ))}
-             </div>
-             </div>
-           );
-         }
+    <div>
+      {Object.entries(grouped).map(([env, regions]) => (
+        <div key={env} style={{ marginBottom: "2rem" }}>
+          <h2>Environment: {env}</h2>
+          {Object.entries(regions).map(([region, services]) => (
+            <div key={region} style={{ marginLeft: "1rem", marginBottom: "1rem" }}>
+              <h3>Region: {region}</h3>
+              <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                {services.map(({ name, status }) => (
+                  <div
+                    key={name}
+                    style={{
+                      padding: "1rem",
+                      borderRadius: "8px",
+                      border: "1px solid #ccc",
+                      backgroundColor: status === "UP" ? "#d4f8d4" : "#f8d4d4",
+                      width: "200px",
+                    }}
+                  >
+                    <h4>{name}</h4>
+                    <p>Status: {status}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
 
-export default App;
-
+export default AppStatusDashboard;
