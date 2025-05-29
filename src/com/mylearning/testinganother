@@ -1,0 +1,63 @@
+import React, { useEffect, useState } from "react";
+
+const PORTS = [8080, 8081]; // 👈 change these as needed
+
+const apps = [
+  { name: "Album Service", port: 8080, basePath: "/app-name-1" },
+  { name: "User Service", port: 8081, basePath: "/app-name-2" },
+  { name: "Payment Service", port: 8082, basePath: "/app-name-3" },
+];
+
+function App() {
+  const [statuses, setStatuses] = useState([]);
+
+  useEffect(() => {
+    const checkAll = async () => {
+      const results = await Promise.all(
+        apps.map(async ({ name, port, basePath }) => {
+          try {
+            const url = `http://localhost:${port}/actuator/health`;
+            const res = await fetch(url);
+            const data = await res.json();
+            return { name, port, status: data.status || 'UNKNOWN' };
+          } catch (e) {
+            return { name, port, status: 'DOWN' };
+          }
+        })
+      );
+      setStatuses(results);
+    };
+
+
+    checkAll();
+    const interval = setInterval(checkAll, 5000); // Refresh every 5s
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+   <div style={{ padding: '2rem' }}>
+        <h2>🖥️ Spring Boot App Status Console</h2>
+  <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+               {statuses.map(({ name, port, status }) => (
+                 <div
+                   key={port}
+                   style={{
+                     padding: "1rem",
+                     borderRadius: "8px",
+                     border: "1px solid #ccc",
+                     backgroundColor: status === "UP" ? "#d4f8d4" : "#f8d4d4",
+                     width: "200px",
+                   }}
+                 >
+                   <h3>{name}</h3>
+                   <p>Port: {port}</p>
+                   <p>Status: {status}</p>
+                 </div>
+               ))}
+             </div>
+             </div>
+           );
+         }
+
+export default App;
+
