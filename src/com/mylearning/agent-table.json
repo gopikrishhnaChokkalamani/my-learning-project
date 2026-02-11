@@ -1,0 +1,29 @@
+[
+  {
+    "type": "TEXT",
+    "content": "Hereisasummaryofyouraccountbalances."
+  },
+  {
+    "type": "TABLE",
+    "title": "AccountBalances",
+    "columns": [
+      "Account",
+      "Balance"
+    ],
+    "rows": [
+      [
+        "Checking",
+        "$12,430"
+      ],
+      [
+        "Savings",
+        "$8,900"
+      ]
+    ]
+  },
+  {
+    "type": "ACTION",
+    "label": "DownloadStatement",
+    "actionId": "download_statement"
+  }
+]
