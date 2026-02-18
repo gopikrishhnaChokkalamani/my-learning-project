@@ -1,0 +1,80 @@
+{
+  "message": {
+    "messageId": "msg-0002",
+    "contextId": "ctx-123",
+    "taskId": "task-abc-001",
+    "role": "ROLE_AGENT",
+    "metadata": {
+      "model": "chat-ai",
+      "serverTimestamp": "2026-02-17T20:18:01Z"
+    },
+    "parts": [
+      {
+        "mediaType": "text/plain",
+        "text": "Here are 3 benefits of microservices (PM-friendly):\n• Faster delivery: teams can deploy independently.\n• Better scalability: scale only the services that need it.\n• Resilience: failures are isolated so one service outage is less likely to take down the whole product."
+      }
+    ]
+  },
+  "task": {
+    "id": "task-abc-001",
+    "contextId": "ctx-123",
+    "status": {
+      "state": "TASK_STATE_COMPLETED",
+      "timestamp": "2026-02-17T20:18:01Z",
+      "message": {
+        "messageId": "msg-0002",
+        "contextId": "ctx-123",
+        "taskId": "task-abc-001",
+        "role": "ROLE_AGENT",
+        "parts": [
+          {
+            "mediaType": "text/plain",
+            "text": "Completed."
+          }
+        ]
+      }
+    },
+    "history": [
+      {
+        "messageId": "msg-0001",
+        "contextId": "ctx-123",
+        "taskId": "task-abc-001",
+        "role": "ROLE_USER",
+        "parts": [
+          {
+            "mediaType": "text/plain",
+            "text": "Summarize the benefits of microservices in 3 bullet points for a product manager."
+          }
+        ]
+      },
+      {
+        "messageId": "msg-0002",
+        "contextId": "ctx-123",
+        "taskId": "task-abc-001",
+        "role": "ROLE_AGENT",
+        "parts": [
+          {
+            "mediaType": "text/plain",
+            "text": "Here are 3 benefits of microservices (PM-friendly):\n• Faster delivery: teams can deploy independently.\n• Better scalability: scale only the services that need it.\n• Resilience: failures are isolated so one service outage is less likely to take down the whole product."
+          }
+        ]
+      }
+    ],
+    "artifacts": [
+      {
+        "artifactId": "art-001",
+        "name": "assistant-answer",
+        "description": "The assistant response in text form",
+        "metadata": {
+          "outputMode": "text/plain"
+        },
+        "parts": [
+          {
+            "mediaType": "text/plain",
+            "text": "Here are 3 benefits of microservices (PM-friendly):\n• Faster delivery: teams can deploy independently.\n• Better scalability: scale only the services that need it.\n• Resilience: failures are isolated so one service outage is less likely to take down the whole product."
+          }
+        ]
+      }
+    ]
+  }
+}
